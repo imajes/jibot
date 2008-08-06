@@ -59,7 +59,7 @@ class Controller < Autumn::Leaf
     old = define(msg[0])
     
     if msg[1] == "is"
-      old.value = old.value + " & " + msg[2]
+      old.value = "#{old.value} & #{msg[2]}"
       old.save
     end
     old
