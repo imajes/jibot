@@ -1,6 +1,11 @@
 # Controller for the Karma leaf.
 
 class Controller < Autumn::Leaf
+
+   def irc_privmsg_event(stem, sender, arguments)
+     puts "the event is #{arguments[:channel]} <#{sender[:nick]}> #{arguments[:message]}"
+   end
+
   
   # Typing "!about" displays some basic information about this leaf.
   

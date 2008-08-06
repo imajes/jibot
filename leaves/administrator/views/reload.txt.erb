@@ -1,11 +1,14 @@
+<%# don't like hacking this here, but the actual controller is scaring me a bit %>
+<% good_leaves = [] %>
 <% if var(:not_found) %>
-	There is no leaf named <%= var :not_found %>.
+  There is no leaf named <%= var :not_found %>.
 <% else %>
-	<% var(:leaves).each do |leaf, error| %>
-		<% if error %>
-			<%= leaf %> couldn't be reloaded: <%= error %>
-		<% else %>
-			<%= leaf %> was reloaded successfully.
-		<% end %>
-	<% end %>
+  <% var(:leaves).each do |leaf, error| %>
+    <% if error %>
+      <%= leaf %> couldn't be reloaded: <%= error %>
+    <% else %>
+      <% good_leaves << leaf %>
+    <% end %>
+  <% end %>
+  Leaves [ <%= good_leaves.join(", ") %> ] reloaded successfully.
 <% end %>

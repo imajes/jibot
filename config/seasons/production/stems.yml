@@ -1,0 +1,11 @@
+--- 
+Freenode: 
+  nick: jibot2
+  leaves: 
+  - Karma
+  - Administrator
+  - Heralder
+  - Insulter
+  rejoin: true
+  channel: "#joiito"
+  server: chat.freenode.net

@@ -45,6 +45,10 @@ class Controller < Autumn::Leaf
   end
   ann :reload_command, :protected => true
   
+  # this is for idiots who like to play :)
+  def die_command(stem, sender, reply_to, msg)
+  end
+  
   # Typing this command will cause the Stem to exit.
   
   def quit_command(stem, sender, reply_to, msg)

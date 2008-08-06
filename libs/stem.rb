@@ -810,7 +810,7 @@ module Autumn
     def split_out_message(arg_str)
       arg_str, *msg = arg_str.split(':')
       msg = msg.join(':')
-      arg_array = arg_str.strip.words
+      arg_array = arg_str.to_s.strip.words
       return arg_array, msg
     end
     

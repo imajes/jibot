@@ -1,0 +1,17 @@
+--- 
+Administrator: 
+  authentication: 
+    type: nick
+    nicks: 
+       - imajes
+       - wiredfool
+       - buridan
+       - kevinmarks
+       - joiito
+  class: Administrator
+Insulter: 
+  class: Insulter
+Heralder:
+  class: Heralder
+Karma:
+  class: Karma

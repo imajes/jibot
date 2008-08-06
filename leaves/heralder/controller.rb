@@ -21,7 +21,9 @@ class Controller < Autumn::Leaf
   
   def def_command(stem, sender, reply_to, msg)
     
-    h = Herald.all(:key => msg, :order => [:key.desc]).last
+    h = Herald.all(:key => msg, :order => [:key.desc]).last unless msg.nil?
+    
+    render "fail" if h.nil?
     
     var :herald => h
     var :person => msg
