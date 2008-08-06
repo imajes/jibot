@@ -15,6 +15,7 @@ class Controller < Autumn::Leaf
   
   # herald people as they join
   def irc_join_event(stem, sender, arguments)
+    
     user = sender[:nick]
     
     h = define(user)
@@ -59,7 +60,7 @@ class Controller < Autumn::Leaf
     old = define(msg[0])
     
     if msg[1] == "is"
-      old.value = "#{old.value} & #{msg[2]}"
+      old.update_attributes(:value => "#{old.value} & #{msg[2]}")
       old.save
     end
     old
