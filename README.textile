@@ -21,8 +21,9 @@ Autumn requires "RubyGems":http://www.rubygems.org and the Daemons and Facets*
 gems. Install RubyGems then run @sudo gem install daemons facets@ in a command
 line in order to run Autumn.
 
-Jibot requires the ruby-sqlite3 gem: @sudo gem install -v 0.9.2 do_sqlite3@  and the 
-"Datamapper":http://datamapper.org/ gem: @sudo gem install install dm-core@ .
+Jibot requires the ruby-sqlite3: @sudo port install rb-sqlite3@ the sqlite gem: 
+@sudo gem install -v 0.9.2 do_sqlite3@  and the "Datamapper":http://datamapper.org/ 
+gem: @sudo gem install -v 0.9.2 install dm-core dm-ar-finders@ .
 
 h2. Hacking JIBOT
 
