@@ -13,20 +13,56 @@ end
 # classes.
 class Controller < Autumn::Leaf
   
-  # Typing "!about" displays some basic information about this leaf.
+  # herald people as they join
+  def irc_join_event(stem, sender, arguments)
+    user = sender[:nick]
+    
+    h = define(user)
+    render "fail" if h.nil?
+    
+    var :herald => h
+    var :person => user
+    render "def"
+  end
   
+  # Typing "!about" displays some basic information about this leaf. (and any others who define this too)
   def about_command(stem, sender, reply_to, msg)
     # This method renders the file "about.txt.erb"
   end
   
   def def_command(stem, sender, reply_to, msg)
     
-    h = Herald.all(:key => msg, :order => [:key.desc]).last unless msg.nil?
-    
+    if (msg.split(" ").length > 1)
+      h = define_or_set(msg)
+    else
+      h = define(msg)
+    end
     render "fail" if h.nil?
     
     var :herald => h
     var :person => msg
+    
+  end
+  
+  private
+  
+  def define(user)
+    return if user.nil?
+    
+    Herald.all(:key => user, :order => [:key.desc]).last unless user.nil?
+  end
+  
+  def define_or_set(msg)
+    msg = msg.split(" ")
+    
+    ## get old 
+    old = define(msg[0])
+    
+    if msg[1] == "is"
+      old.value = old.value + " & " + msg[2]
+      old.save
+    end
+    old
     
   end
 end
