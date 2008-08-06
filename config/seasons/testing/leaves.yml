@@ -1,0 +1,11 @@
+--- 
+Administrator: 
+  authentication: 
+    type: op
+  class: Administrator
+#Scorekeeper: 
+#  class: Scorekeeper
+Insulter: 
+  class: Insulter
+Heralder:
+  class: Heralder

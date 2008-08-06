@@ -1,0 +1,11 @@
+--- 
+Freenode: 
+  nick: baby-jibot
+  leaves: 
+  - Administrator
+  - Heralder
+#  - Scorekeeper
+  - Insulter
+  rejoin: true
+  channel: "#joiito"
+  server: chat.freenode.net
