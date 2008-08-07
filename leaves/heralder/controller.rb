@@ -96,7 +96,7 @@ class Controller < Autumn::Leaf
       Herald.new(:nick => nick.downcase, :def => to_learn).save
     end
     
-    return [define(nick), nick]
+    return define(nick)
   end
   
   def to_sentence(defs)
