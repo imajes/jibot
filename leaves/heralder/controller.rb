@@ -46,7 +46,14 @@ class Controller < Autumn::Leaf
   end
   
   def forget_command(stem, sender, reply_to, msg)
-    var :msg => msg
+    str = msg.split
+    nick = str[0]
+    to_forget = str[2, str.length].join(" ")
+    
+    Herald.first(:nick => nick, :def => to_forget).destroy!
+    
+    var :person => nick
+    var :herald => define(nick)
   end
   
   private
@@ -62,11 +69,9 @@ class Controller < Autumn::Leaf
     
     nick = msg[0]
     if msg[1] == "is"
-      # yeah, this is lame
-      msg.shift
-      msg.shift
+      to_learn = msg[2, msg.length].join(" ")
       
-      Herald.new(:nick => nick, :def => msg.join(" ")).save
+      Herald.new(:nick => nick, :def => to_learn).save
     end
     
     return [define(nick), nick]
