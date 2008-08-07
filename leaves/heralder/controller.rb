@@ -16,13 +16,11 @@ class Controller < Autumn::Leaf
   # herald people as they join
   def someone_did_join_channel(stem, person, channel)
     nick = person[:nick]
-
-    puts "nick is ... #{nick}"
     
     herald, nick = define(nick)
     
     if herald.nil?
-      render "fail" and return
+      return "Hey #{nick}!. Everyone, meet #{nick}. They're new about these parts."
     end
     
     "Hey #{nick}!. Everyone, it's #{nick}, and i know they are #{herald}"
