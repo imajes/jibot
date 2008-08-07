@@ -1,5 +1,6 @@
 --- 
 Freenode: 
+  server: chat.freenode.net
   nick: jibot2
   leaves: 
   - Karma
@@ -7,5 +8,19 @@ Freenode:
   - Heralder
   - Insulter
   rejoin: true
-  channel: "#joiito"
-  server: chat.freenode.net
+  channels:
+    - "#joiito"
+    - "#jibot"
+    - "#freeculture"
+    - "#technorati"
+    - "#jeanniecool"
+    - "#suwcharman"
+    - "#icann"
+    - "#microformats"
+    - "#webkit"
+    - "#barcamp"
+    - "#aoir_general"
+    - "#shdh"
+    - "#jhuacm"
+    - "#openid"
+  
