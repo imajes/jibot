@@ -23,7 +23,7 @@ class Controller < Autumn::Leaf
       return "Hey #{nick}!. Everyone, meet #{nick}. They're new about these parts."
     end
     
-    "Hey #{nick}!. Everyone, it's #{nick}, and i know they are #{herald}"
+    return "Hey #{nick}!. Everyone, it's #{nick}, and i know they are #{herald}"
 
   end
   
