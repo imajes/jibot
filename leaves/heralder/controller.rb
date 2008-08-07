@@ -32,23 +32,25 @@ class Controller < Autumn::Leaf
   end
   
   def def_command(stem, sender, reply_to, msg)
-    
+
     if (msg.split(" ").length > 1)
-      h = define_or_set(msg)
+      herald, user = define_or_set(msg)
     else
-      h = define(msg)
+      herald, user = define(msg)
     end
     render "fail" if h.nil?
     
-    var :herald => h
-    var :person => msg
+    var :herald => herald
+    var :person => user
     
   end
   
   private
   
   def define(user)
-    to_sentence(Herald.all(:nick => user, :order => [:pkey.asc])) unless user.nil?
+    unless user.nil?
+      [to_sentence(Herald.all(:nick => user, :order => [:pkey.asc])), user]
+    end
   end
   
   def define_or_set(msg)
@@ -63,7 +65,7 @@ class Controller < Autumn::Leaf
       Herald.new(:nick => nick, :def => msg.join(" ")).save
     end
     
-    define(nick)
+    [define(nick), nick]
   end
   
   def to_sentence(defs)
