@@ -20,10 +20,12 @@ class Controller < Autumn::Leaf
     herald, nick = define(nick)
     
     if herald.nil?
-      return "Hey #{nick}!. Everyone, meet #{nick}. They're new about these parts."
+      str = "Hey #{nick}!. Everyone, meet #{nick}. They're new about these parts."
+    else
+      str = "Hey #{nick}!. Everyone, it's #{nick}, and i know they are #{herald}"
     end
     
-    return "Hey #{nick}!. Everyone, it's #{nick}, and i know they are #{herald}"
+    stem.message(str, channel)
 
   end
   
