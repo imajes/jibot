@@ -73,9 +73,9 @@ class Controller < Autumn::Leaf
   end
   
   def forgetme_command(stem, sender, reply_to, msg)
-    #Herald.all(:nick => sender).destroy
+    Herald.all(:nick => sender[:nick]).destroy
     
-    var :nick => sender
+    var :nick => sender[:nick]
   end
   
   private
