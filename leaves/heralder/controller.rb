@@ -38,7 +38,7 @@ class Controller < Autumn::Leaf
     else
       herald, user = define(msg)
     end
-    render "fail" if h.nil?
+    render "fail" if herald.nil?
     
     var :herald => herald
     var :person => user
