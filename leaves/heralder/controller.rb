@@ -14,10 +14,10 @@ end
 class Controller < Autumn::Leaf
   
   # herald people as they join
-  def irc_join_event(stem, sender, arguments)
+  def someone_did_join_channel(stem, person, channel)
     super
     
-    user = sender[:nick]
+    user = person
     
     herald, user = define(user)
     render "fail" if h.nil?
