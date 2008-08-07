@@ -48,7 +48,6 @@ class Controller < Autumn::Leaf
   private
   
   def define(user)
-    return if user.nil?
     to_sentence(Herald.all(:nick => user, :order => [:pkey.asc])) unless user.nil?
   end
   
@@ -64,7 +63,7 @@ class Controller < Autumn::Leaf
       Herald.new(:nick => nick, :def => msg.join(" ")).save
     end
     
-    define(msg[0])
+    define(nick)
   end
   
   def to_sentence(defs)
