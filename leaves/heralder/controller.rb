@@ -15,15 +15,15 @@ class Controller < Autumn::Leaf
   
   # herald people as they join
   def someone_did_join_channel(stem, person, channel)
-    super
+    nick = person[:nick]
+
+    puts "nick is ... #{nick}"
     
-    user = person
-    
-    herald, user = define(user)
-    render "fail" if h.nil?
+    herald, nick = define(nick)
+    render "fail" if herald.nil?
     
     var :herald => herald
-    var :person => user
+    var :person => nick
     
     render "def"
   end
