@@ -45,6 +45,10 @@ class Controller < Autumn::Leaf
     
   end
   
+  def forget_command(stem, sender, reply_to, msg)
+    var :msg => msg
+  end
+  
   private
   
   def define(user)
@@ -65,7 +69,7 @@ class Controller < Autumn::Leaf
       Herald.new(:nick => nick, :def => msg.join(" ")).save
     end
     
-    [define(nick), nick]
+    return [define(nick), nick]
   end
   
   def to_sentence(defs)
