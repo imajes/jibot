@@ -16,14 +16,14 @@ class Controller < Autumn::Leaf
   # herald people as they join
   def irc_join_event(stem, sender, arguments)
     
-    user = sender[:nick]
-    
-    h = define(user)
-    render "fail" if h.nil?
-    
-    var :herald => h
-    var :person => user
-    render "def"
+    # user = sender[:nick]
+    # 
+    # h = define(user)
+    # render "fail" if h.nil?
+    # 
+    # var :herald => h
+    # var :person => user
+    # render "def"
   end
   
   # Typing "!about" displays some basic information about this leaf. (and any others who define this too)
@@ -50,7 +50,8 @@ class Controller < Autumn::Leaf
     nick = str[0]
     to_forget = str[2, str.length].join(" ")
     
-    Herald.first(:nick => nick, :def => to_forget).destroy!
+    ## not checking for return values here, which is probably quite silly
+    Herald.first(:nick => nick, :def => to_forget).destroy
     
     var :person => nick
     var :herald => define(nick)
