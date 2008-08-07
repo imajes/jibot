@@ -54,7 +54,7 @@ class Controller < Autumn::Leaf
     Herald.first(:nick => nick, :def => to_forget).destroy
     
     var :person => nick
-    var :herald => define(nick)
+    var :herald => define(nick).first
   end
   
   private
