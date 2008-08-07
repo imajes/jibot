@@ -20,12 +20,13 @@ class Controller < Autumn::Leaf
     puts "nick is ... #{nick}"
     
     herald, nick = define(nick)
-    render "fail" if herald.nil?
     
-    var :herald => herald
-    var :person => nick
+    if herald.nil?
+      render "fail" and return
+    end
     
-    render "def"
+    "Hey #{nick}!. Everyone, it's #{nick}, and i know they are #{herald}"
+
   end
   
   # Typing "!about" displays some basic information about this leaf. (and any others who define this too)
