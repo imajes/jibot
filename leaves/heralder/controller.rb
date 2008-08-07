@@ -76,7 +76,7 @@ class Controller < Autumn::Leaf
   
   def define(user)
     unless user.nil?
-      [to_sentence(Herald.all(:nick => user, :order => [:pkey.asc])), user]
+      [to_sentence(Herald.all(:nick => user.downcase, :order => [:pkey.asc])), user]
     end
   end
   
@@ -87,7 +87,7 @@ class Controller < Autumn::Leaf
     if msg[1] == "is"
       to_learn = msg[2, msg.length].join(" ")
       
-      Herald.new(:nick => nick, :def => to_learn).save
+      Herald.new(:nick => nick.downcase, :def => to_learn).save
     end
     
     return [define(nick), nick]
