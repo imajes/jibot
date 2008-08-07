@@ -50,7 +50,7 @@ class Controller < Autumn::Leaf
   def define(user)
     return if user.nil?
     # order - , :order => [:pkey.asc]
-    Herald.all(:nick => user).to_sentence unless user.nil?
+    to_sentence(Herald.all(:nick => user)) unless user.nil?
   end
   
   def define_or_set(msg)
