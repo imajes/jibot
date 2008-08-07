@@ -25,6 +25,8 @@ class Controller < Autumn::Leaf
       str = "Hey #{nick}!. Everyone, it's #{nick}, and i know they are #{herald}"
     end
     
+    puts "i think the string is #{str}"
+    
     stem.message(str, channel)
 
   end
