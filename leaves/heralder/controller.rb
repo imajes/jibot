@@ -72,6 +72,12 @@ class Controller < Autumn::Leaf
     var :herald => define(nick).first
   end
   
+  def forgetme_command(stem, sender, reply_to, msg)
+    #Herald.all(:nick => sender).destroy
+    
+    var :nick => sender
+  end
+  
   private
   
   def define(user)
