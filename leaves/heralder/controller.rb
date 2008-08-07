@@ -49,15 +49,19 @@ class Controller < Autumn::Leaf
   
   def define(user)
     return if user.nil?
-    # order - , :order => [:pkey.asc]
-    to_sentence(Herald.all(:nick => user)) unless user.nil?
+    to_sentence(Herald.all(:nick => user, :order => [:pkey.asc])) unless user.nil?
   end
   
   def define_or_set(msg)
     msg = msg.split(" ")
     
+    nick = msg[0]
     if msg[1] == "is"
-      Herald.new(:nick => msg[0], :def => msg[2]).save
+      # yeah, this is lame
+      msg.shift
+      msg.shift
+      
+      Herald.new(:nick => nick, :def => msg.join(" ")).save
     end
     
     define(msg[0])
