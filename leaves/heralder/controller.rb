@@ -19,8 +19,9 @@ class Controller < Autumn::Leaf
     
     herald, nick = define(nick)
     
-    if herald.nil?
-      str = "Hey #{nick}!. Everyone, meet #{nick}. They're new about these parts."
+    if herald.empty?
+      str = ""
+      #str = "Hey #{nick}!. Everyone, meet #{nick}. They're new about these parts."
     else
       str = "Hey #{nick}!. Everyone, it's #{nick}, and i know they are #{herald}"
     end

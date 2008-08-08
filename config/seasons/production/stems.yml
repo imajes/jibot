@@ -23,4 +23,24 @@ Freenode:
     - "#shdh"
     - "#jhuacm"
     - "#openid"
-  
+  # bots:
+  #   - jibot
+  #   - jibot2
+  #   - phenny
+  #   - xena
+  #   - datum
+  #   - shorten
+  #   - workbench
+  #   - surly
+  #   - chomp
+GimpNet:
+  server: irc.neitzert.com
+  nick: jibot
+  leaves: 
+  - Karma
+  - Administrator
+  - Heralder
+  - Insulter
+  rejoin: true
+  channels:
+    - "#dnalounge"
