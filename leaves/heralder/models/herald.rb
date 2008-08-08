@@ -3,13 +3,10 @@
 class Herald
   include DataMapper::Resource
   
-  storage_names[:default] = "defs"
+  storage_names[:default] = "herald"
   
-  property :pkey, Integer, :serial => true
+  #property :pkey, Integer, :serial => true
   property :nick, String, :nullable => false
-  property :def, String, :nullable => false
+  property :setting, Integer, :defalt => 1, :nullable => false
   
-  # has n, :scores, :child_key => [ :receiver_id ]
-  # has n, :scores_awarded, :class_name => 'Score', :child_key => [ :giver_id ]
-  # has n, :pseudonyms
 end

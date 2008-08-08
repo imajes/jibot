@@ -8,7 +8,7 @@ rescue Gem::LoadError
   # Install the "chronic" gem for more robust date parsing
 end
 
-# Controller for the Heralder leaf. This class contains only the methods
+# Controller for the Definitioner leaf. This class contains only the methods
 # directly relating to IRC. Other methods are stored in the helper and model
 # classes.
 class Controller < Autumn::Leaf
@@ -17,13 +17,13 @@ class Controller < Autumn::Leaf
   def someone_did_join_channel(stem, person, channel)
     nick = person[:nick]
     
-    herald, nick = define(nick)
+    herald, nick = define(nick) if should_herald(nick)
     
     if herald.empty?
       str = ""
       #str = "Hey #{nick}!. Everyone, meet #{nick}. They're new about these parts."
     else
-      str = "Hey #{nick}!. Everyone, it's #{nick}, and i know they are #{herald}"
+      str = #{nick} is #{herald}"
     end
     
     puts "i think the string is #{str}"
@@ -35,6 +35,28 @@ class Controller < Autumn::Leaf
   # Typing "!about" displays some basic information about this leaf. (and any others who define this too)
   def about_command(stem, sender, reply_to, msg)
     # This method renders the file "about.txt.erb"
+  end
+  
+  def herald_command(stem, sender, reply_to, msg)
+    nick = sender[:nick]
+    
+    h = Herald.find(:nick => nick.downcase)
+    
+    if h.nil? 
+      Herald.new(:nick => nick.downcase, :setting => 1)
+      return "#{nick}: I don't know your settings, but I'll now herald you. Say !herald again to switch off."
+    end
+    
+    if h.setting == 0
+      h.setting = 1
+      str = "#{nick}: I'll start heralding you now. Thanks!"
+    else
+      h.setting = 0
+      str = "#{nick}: OK. I've got the message. I'll keep quiet when you join."
+    end
+    
+    h.save
+    return str
   end
   
   def def_command(stem, sender, reply_to, msg)
@@ -72,23 +94,29 @@ class Controller < Autumn::Leaf
     to_forget = str[2, str.length].join(" ")
     
     ## not checking for return values here, which is probably quite silly
-    Herald.first(:nick => nick, :def => to_forget).destroy
+    Definition.first(:nick => nick, :def => to_forget).destroy
     
     var :person => nick
     var :herald => define(nick).first
   end
   
   def forgetme_command(stem, sender, reply_to, msg)
-    Herald.all(:nick => sender[:nick]).destroy
+    Definition.all(:nick => sender[:nick]).destroy
     
     var :nick => sender[:nick]
   end
   
   private
   
+  def should_herald(nick)
+    unless nick.nil?
+      return true if Herald.all(:nick => nick.downcase).setting == 1
+    end
+  end
+  
   def define(user)
     unless user.nil?
-      [to_sentence(Herald.all(:nick => user.downcase, :order => [:pkey.asc])), user]
+      [to_sentence(Definition.all(:nick => user.downcase, :order => [:pkey.asc])), user]
     end
   end
   
@@ -99,7 +127,7 @@ class Controller < Autumn::Leaf
     if msg[1] == "is"
       to_learn = msg[2, msg.length].join(" ")
       
-      Herald.new(:nick => nick.downcase, :def => to_learn).save
+      Definition.new(:nick => nick.downcase, :def => to_learn).save
     end
     
     return define(nick)
