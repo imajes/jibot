@@ -23,7 +23,7 @@ class Controller < Autumn::Leaf
       str = ""
       #str = "Hey #{nick}!. Everyone, meet #{nick}. They're new about these parts."
     else
-      str = #{nick} is #{herald}"
+      str = "#{nick} is #{herald}"
     end
     
     puts "i think the string is #{str}"
