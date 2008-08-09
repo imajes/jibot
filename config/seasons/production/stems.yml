@@ -1,7 +1,7 @@
 --- 
 Freenode: 
   server: chat.freenode.net
-  nick: jibot2
+  nick: jibot3
   leaves: 
   - Karma
   - Administrator
@@ -11,18 +11,18 @@ Freenode:
   channels:
     - "#joiito"
     - "#jibot"
-    - "#freeculture"
-    - "#technorati"
-    - "#jeanniecool"
-    - "#suwcharman"
-    - "#icann"
-    - "#microformats"
-    - "#webkit"
-    - "#barcamp"
-    - "#aoir_general"
-    - "#shdh"
-    - "#jhuacm"
-    - "#openid"
+  #  - "#freeculture"
+  #  - "#technorati"
+  #  - "#jeanniecool"
+  #  - "#suwcharman"
+  #  - "#icann"
+  #  - "#microformats"
+  #  - "#webkit"
+  #  - "#barcamp"
+  #  - "#aoir_general"
+  #  - "#shdh"
+  #  - "#jhuacm"
+  #  - "#openid"
   # bots:
   #   - jibot
   #   - jibot2
@@ -33,14 +33,14 @@ Freenode:
   #   - workbench
   #   - surly
   #   - chomp
-GimpNet:
-  server: irc.neitzert.com
-  nick: jibot
-  leaves: 
-  - Karma
-  - Administrator
-  - Heralder
-  - Insulter
-  rejoin: true
-  channels:
-    - "#dnalounge"
+# GimpNet:
+#   server: irc.neitzert.com
+#   nick: jibot
+#   leaves: 
+#   - Karma
+#   - Administrator
+#   - Heralder
+#   - Insulter
+#   rejoin: true
+#   channels:
+#     - "#dnalounge"
