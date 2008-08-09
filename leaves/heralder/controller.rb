@@ -110,7 +110,7 @@ class Controller < Autumn::Leaf
   
   def should_herald(nick)
     unless nick.nil?
-      return true if Herald.all(:nick => nick.downcase).setting == 1
+      return true if Herald.all(:nick => nick.downcase).heralded == 1
     end
   end
   
