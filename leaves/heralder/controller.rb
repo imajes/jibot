@@ -43,15 +43,15 @@ class Controller < Autumn::Leaf
     h = Herald.find(:nick => nick.downcase)
     
     if h.nil? 
-      Herald.new(:nick => nick.downcase, :setting => 1)
+      Herald.new(:nick => nick.downcase, :heralded => 1)
       return "#{nick}: I don't know your settings, but I'll now herald you. Say !herald again to switch off."
     end
     
-    if h.setting == 0
-      h.setting = 1
+    if h.heralded == 0
+      h.heralded = 1
       str = "#{nick}: I'll start heralding you now. Thanks!"
     else
-      h.setting = 0
+      h.heralded = 0
       str = "#{nick}: OK. I've got the message. I'll keep quiet when you join."
     end
     
@@ -110,7 +110,7 @@ class Controller < Autumn::Leaf
   
   def should_herald(nick)
     unless nick.nil?
-      return true if Herald.all(:nick => nick.downcase).setting == 1
+      return true if Herald.all(:nick => nick.downcase).heralded == 1
     end
   end
   
