@@ -58,7 +58,8 @@ class Controller < Autumn::Leaf
   
   def def_command(stem, sender, reply_to, msg)
 
-    if msg.empty?
+    if msg.nil?
+      ## there's no message - just the command
       render "braindump" && return
     end
 
@@ -67,7 +68,7 @@ class Controller < Autumn::Leaf
     else
       herald, user = define(msg)
     end
-    render "fail" if herald.nil?
+    herald = "Not yet defined!" if (herald.nil? || herald.empty?)
     
     var :herald => herald
     var :person => user
