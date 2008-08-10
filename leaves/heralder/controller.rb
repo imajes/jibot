@@ -58,6 +58,10 @@ class Controller < Autumn::Leaf
   
   def def_command(stem, sender, reply_to, msg)
 
+    if msg.empty?
+      render "braindump" && return
+    end
+
     if (msg.split(" ").length > 1)
       herald, user = define_or_set(msg)
     else
