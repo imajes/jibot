@@ -8,7 +8,7 @@ rescue Gem::LoadError
   # Install the "chronic" gem for more robust date parsing
 end
 
-# Controller for the Definitioner leaf. This class contains only the methods
+# Controller for the Heralder leaf. This class contains only the methods
 # directly relating to IRC. Other methods are stored in the helper and model
 # classes.
 class Controller < Autumn::Leaf
