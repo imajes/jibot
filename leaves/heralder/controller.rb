@@ -19,17 +19,14 @@ class Controller < Autumn::Leaf
     
     herald, nick = define(nick) if should_herald(nick)
     
-    if herald.empty?
+    if herald.nil? || herald.empty?
       str = ""
       #str = "Hey #{nick}!. Everyone, meet #{nick}. They're new about these parts."
     else
       str = "#{nick} is #{herald}"
     end
     
-    puts "i think the string is #{str}"
-    
     stem.message(str, channel)
-
   end
   
   # Typing "!about" displays some basic information about this leaf. (and any others who define this too)
@@ -40,18 +37,18 @@ class Controller < Autumn::Leaf
   def herald_command(stem, sender, reply_to, msg)
     nick = sender[:nick]
     
-    h = Herald.find(:nick => nick.downcase)
+    h = Herald.first(:nick => nick.downcase)
     
     if h.nil? 
-      Herald.new(:nick => nick.downcase, :heralded => 1)
+      Herald.new(:nick => nick.downcase, :setting => 1)
       return "#{nick}: I don't know your settings, but I'll now herald you. Say !herald again to switch off."
     end
     
-    if h.heralded == 0
-      h.heralded = 1
+    if h.setting == 0
+      h.setting = 1
       str = "#{nick}: I'll start heralding you now. Thanks!"
     else
-      h.heralded = 0
+      h.setting = 0
       str = "#{nick}: OK. I've got the message. I'll keep quiet when you join."
     end
     
@@ -61,12 +58,17 @@ class Controller < Autumn::Leaf
   
   def def_command(stem, sender, reply_to, msg)
 
+    if msg.nil?
+      ## there's no message - just the command
+      render "braindump" && return
+    end
+
     if (msg.split(" ").length > 1)
       herald, user = define_or_set(msg)
     else
       herald, user = define(msg)
     end
-    render "fail" if herald.nil?
+    herald = "Not yet defined!" if (herald.nil? || herald.empty?)
     
     var :herald => herald
     var :person => user
@@ -110,7 +112,8 @@ class Controller < Autumn::Leaf
   
   def should_herald(nick)
     unless nick.nil?
-      return true if Herald.all(:nick => nick.downcase).heralded == 1
+      h = Herald.first(:nick => nick.downcase)
+      return true if h.nil? || h.setting == 1
     end
   end
   
