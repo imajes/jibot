@@ -68,7 +68,7 @@ class Controller < Autumn::Leaf
     else
       herald, user = define(msg)
     end
-    herald = "Not yet defined!" if (herald.nil? || herald.empty?)
+    herald = "not defined yet..." if (herald.nil? || herald.empty?)
     
     var :herald => herald
     var :person => user

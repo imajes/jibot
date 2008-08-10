@@ -6,7 +6,7 @@ class Herald
   storage_names[:default] = "herald"
   
   #property :pkey, Integer, :serial => true
-  property :nick, String, :nullable => false
+  property :nick, String, :nullable => false, :key => true
   property :setting, Integer, :nullable => false
   
 end
