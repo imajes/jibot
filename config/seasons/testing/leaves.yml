@@ -1,11 +1,17 @@
 --- 
 Administrator: 
   authentication: 
-    type: op
+    type: nick
+    nicks: 
+       - imajes
+       - wiredfool
+       - buridan
+       - kevinmarks
+       - joiito
   class: Administrator
-#Scorekeeper: 
-#  class: Scorekeeper
 Insulter: 
   class: Insulter
 Heralder:
   class: Heralder
+Karma:
+  class: Karma
