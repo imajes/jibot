@@ -7,6 +7,6 @@ class Herald
   
   #property :pkey, Integer, :serial => true
   property :nick, String, :nullable => false
-  property :heralded, Integer, :default => 1, :nullable => false
+  property :setting, Integer, :nullable => false
   
 end
