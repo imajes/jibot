@@ -75,29 +75,10 @@ class Controller < Autumn::Leaf
     
   end
   
-  ## alternates
-  
-  def learn_command(stem, sender, reply_to, msg)
-    def_command(stem, sender, reply_to, msg)
-    render "def"
-  end
-  
-  def whois_command(stem, sender, reply_to, msg)
-    herald, user = define(msg)
-    
-    var :herald => herald
-    var :user => user
-    render "def"
-  end
-  
-  def whatis_command(stem, sender, reply_to, msg)
-    herald, user = define(msg)
-    
-    var :herald => herald
-    var :user => user
-    render "def"
-  end
-  
+  # Aliases
+  alias_command :def, :learn
+  alias_command :def, :whois
+  alias_command :def, :whatis
   
   def forget_command(stem, sender, reply_to, msg)
     str = msg.split
