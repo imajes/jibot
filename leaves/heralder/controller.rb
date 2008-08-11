@@ -120,7 +120,9 @@ class Controller < Autumn::Leaf
     if msg[1] == "is"
       to_learn = msg[2, msg.length].join(" ")
       
-      Definition.new(:nick => nick.downcase, :def => to_learn).save
+      msgs = to_learn.split(" & ")
+      
+      msgs.each { |to_learn|  Definition.new(:nick => nick.downcase, :def => to_learn).save }
     end
     
     return define(nick)
