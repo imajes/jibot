@@ -97,6 +97,7 @@ class Controller < Autumn::Leaf
     var :herald => define(nick).first
   end
   
+  # TODO: Fix "destroy *with* validations bug..."
   def forgetme_command(stem, sender, reply_to, msg)
     Definition.all(:nick => sender[:nick]).destroy
     
@@ -127,6 +128,7 @@ class Controller < Autumn::Leaf
       
       msgs = to_learn.split(" & ")
       
+      # TODO: Validate uniqueness within the scope of the username
       msgs.each { |to_learn|  Definition.new(:nick => nick.downcase, :def => to_learn).save }
     end
     
