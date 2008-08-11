@@ -8,7 +8,7 @@ require 'libs/formatting'
 
 module Autumn
   
-  # This is the superclass that all Autumn leaves use. To write a leaf, sublcass
+  # This is the superclass that all Autumn leaves use. To write a leaf, subclass
   # this class and implement methods for each of your leaf's commands. Your
   # leaf's repertoire of commands is derived from the names of the methods you
   # write. For instance, to have your leaf respond to a "!hello" command in IRC,

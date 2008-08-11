@@ -90,6 +90,15 @@ class Controller < Autumn::Leaf
     render "def"
   end
   
+  def whatis_command(stem, sender, reply_to, msg)
+    herald, user = define(msg)
+    
+    var :herald => herald
+    var :user => user
+    render "def"
+  end
+  
+  
   def forget_command(stem, sender, reply_to, msg)
     str = msg.split
     nick = str[0]

@@ -1,11 +1,34 @@
 --- 
 Freenode: 
-  nick: baby-jibot
+  server: chat.freenode.net
+  nick: jibot2
   leaves: 
+  - Karma
   - Administrator
   - Heralder
-#  - Scorekeeper
   - Insulter
   rejoin: true
-  channel: "#joiito"
-  server: chat.freenode.net
+  channels:
+    - "#joiito"
+    - "#jibot"
+  # bots:
+  #   - jibot
+  #   - jibot2
+  #   - phenny
+  #   - xena
+  #   - datum
+  #   - shorten
+  #   - workbench
+  #   - surly
+  #   - chomp
+GimpNet:
+  server: irc.neitzert.com
+  nick: jibot
+  leaves: 
+  - Karma
+  - Administrator
+  - Heralder
+  - Insulter
+  rejoin: true
+  channels:
+    - "#dnalounge"
