@@ -86,7 +86,12 @@ class Controller < Autumn::Leaf
     to_forget = str[2, str.length].join(" ")
     
     ## not checking for return values here, which is probably quite silly
-    Definition.first(:nick => nick, :def => to_forget).destroy
+    # now checking for exceptions
+    begin
+      Definition.first(:nick => nick, :def => to_forget).destroy
+    rescue
+      return "I did not know that #{nick} was #{to_forget}"
+    end
     
     var :person => nick
     var :herald => define(nick).first
