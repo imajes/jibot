@@ -86,11 +86,7 @@ class Controller < Autumn::Leaf
     to_forget = str[2, str.length].join(" ")
     
     ## not checking for return values here, which is probably quite silly
-    begin
-      Definition.first(:nick => nick, :def => to_forget).destroy
-    rescue
-      return "I did not know that #{nick} was #{to_forget}"
-    end
+    Definition.first(:nick => nick, :def => to_forget).destroy
     
     var :person => nick
     var :herald => define(nick).first
@@ -133,7 +129,6 @@ class Controller < Autumn::Leaf
   end
   
   def to_sentence(defs)
-    
     defs.collect {|r| r.def }.join(join_string)
   end
 end
