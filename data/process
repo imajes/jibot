@@ -1,0 +1,29 @@
+# dump and reload in a new db
+for f in `ls *.sqlite`; do `sqlite $f .dump > $f.sql` ; done
+cat *.sql | sqlite3 new.sqlite
+
+# dump the defs as csv 
+echo ".mode csv
+.output def.csv
+select * from def;
+.quit" 
+| sqlite3 new.sqlite
+
+# remove + for spaces, sort and unique so that we don't have dup lines.
+tr '+' ' ' < def.csv | sort | uniq > def_clean.csv
+
+#process
+python /Users/erics/jibot/sqlite/def.py | uniq > def.sql
+
+sqlite3 new.sqlite < def.sql
+
+# split the masternick apart
+.mode csv
+.output master.csv
+select * from masternick;
+.quit
+
+#process
+python /Users/erics/jibot/sqlite/master.py | uniq > master.sql
+
+sqlite3 new.sqlite < master.sql
