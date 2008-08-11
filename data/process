@@ -1,10 +1,20 @@
+#
+# Eric Soroos
+#
+# Not exactly a shell script, as the echos probably aren't legal.
+# This is the history of what I've done to the jibot data to transform 
+# from separate sqlite2 dbs to a single sqlite3 db with the funky 
+# ' & ' array joining undone on the def and the masternick tables.
+# Also removed the +==' ' in the defs file, and removed some duplicate lines
+#  
+
 # dump and reload in a new db
 for f in `ls *.sqlite`; do `sqlite $f .dump > $f.sql` ; done
 cat *.sql | sqlite3 new.sqlite
 
 # dump the defs as csv 
 echo ".mode csv
-.output def.csv
+.output def2.csv
 select * from def;
 .quit" 
 | sqlite3 new.sqlite

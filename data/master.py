@@ -1,4 +1,9 @@
 #!/usr/bin/python
+#
+# Eric Soroos
+#
+# quickie script to turn the masternick table from master:alt&alt&alt
+# to a 1:n master:alt table.
 
 def out(m,a):
     print "insert into masternick values ('%s', '%s');" % (m,a.lower())

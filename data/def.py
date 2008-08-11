@@ -1,4 +1,9 @@
 #!/usr/bin/python
+#
+# Eric Soroos
+#
+# quickie script to turn the def table from nick:def & def & def
+# to a 1:n nick:def table.
 
 import csv
 
