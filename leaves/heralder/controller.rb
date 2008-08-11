@@ -75,29 +75,10 @@ class Controller < Autumn::Leaf
     
   end
   
-  ## alternates
-  
-  def learn_command(stem, sender, reply_to, msg)
-    def_command(stem, sender, reply_to, msg)
-    render "def"
-  end
-  
-  def whois_command(stem, sender, reply_to, msg)
-    herald, user = define(msg)
-    
-    var :herald => herald
-    var :user => user
-    render "def"
-  end
-  
-  def whatis_command(stem, sender, reply_to, msg)
-    herald, user = define(msg)
-    
-    var :herald => herald
-    var :user => user
-    render "def"
-  end
-  
+  # Aliases
+  alias_command :def, :learn
+  alias_command :def, :whois
+  alias_command :def, :whatis
   
   def forget_command(stem, sender, reply_to, msg)
     str = msg.split
@@ -105,12 +86,18 @@ class Controller < Autumn::Leaf
     to_forget = str[2, str.length].join(" ")
     
     ## not checking for return values here, which is probably quite silly
-    Definition.first(:nick => nick, :def => to_forget).destroy
+    # now checking for exceptions
+    begin
+      Definition.first(:nick => nick, :def => to_forget).destroy
+    rescue
+      return "I did not know that #{nick} was #{to_forget}"
+    end
     
     var :person => nick
     var :herald => define(nick).first
   end
   
+  # TODO: Fix "destroy *with* validations bug..."
   def forgetme_command(stem, sender, reply_to, msg)
     Definition.all(:nick => sender[:nick]).destroy
     
@@ -139,13 +126,23 @@ class Controller < Autumn::Leaf
     if msg[1] == "is"
       to_learn = msg[2, msg.length].join(" ")
       
-      Definition.new(:nick => nick.downcase, :def => to_learn).save
+      msgs = to_learn.split(" & ")
+      
+      # TODO: Validate uniqueness within the scope of the username
+      msgs.each { |to_learn|  Definition.new(:nick => nick.downcase, :def => to_learn).save }
     end
     
     return define(nick)
   end
   
   def to_sentence(defs)
-    defs.collect {|r| r.def }.join(" & ")
+    # If there are a small number of defs, then join with "and", otherwise with "&"
+    if defs.length < 5
+      join_string = " and "
+    else
+      join_string = " & "
+    end
+    
+    defs.collect {|r| r.def }.join(join_string)
   end
 end
