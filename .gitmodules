@@ -1,0 +1,3 @@
+[submodule "leaves/websearcher"]
+	path = leaves/websearcher
+	url = git://github.com/RISCfuture/autumn-websearcher.git
