@@ -25,6 +25,52 @@ Jibot requires the ruby-sqlite3: @sudo port install rb-sqlite3@ the sqlite gem:
 @sudo gem install -v 0.9.2 do_sqlite3@  and the "Datamapper":http://datamapper.org/ 
 gem: @sudo gem install -v 0.9.2 install dm-core dm-ar-finders@ .
 
+One person's install notes on OS/X Leopard:
+
+On a fairly stock leopard system it was also necessary to add a few steps... "this":http://github.com/guides/providing-your-ssh-key which in which ssh-keygen creates the .ssl folder and public key to provide the github website.
+
+Then to make logging in easier by adding the login to the keychain: 
+$ /usr/bin/ssh-add -K
+
+To install git "follow":http://code.google.com/p/git-osx-installer/
+
+Or just use the precompiled one "from":http://code.google.com/p/git-osx-installer/
+
+Configured git:
+Macintosh:~ myhomedir$ git config --global user.name 'Firstname Lastname'
+Macintosh:~ myhomedir$ git config --global user.email 'your@email.here'
+
+Created a spot and got a clone:
+@Macintosh:~ myhomedir$ cd src@
+@Macintosh:src myhomedir$ git clone git://github.com/imajes/jibot.git@
+
+RubyGems was already installed on Leopard so I ran the @sudo gem install daemons facets@ above.
+Before I could run the @sudo port install rb-sqlite3@ however it was necessary to install "macports":http://www.macports.org/
+
+Then continue by running @Macintosh:~ myhomedir$ sudo /opt/local/bin/port install rb-sqlite3@
+and it took  awhile to come back... updated a lot of packages.
+
+Extlib was missing so this was necessary: @Macintosh:~ myhomedir$ sudo gem install -v 0.9.2 extlib@
+ Successfully installed extlib-0.9.2
+1 gem installed
+
+Then following the advice in README.autumn - had to modify jibot/config/global.yml to point to testing season instead of production.
+
+Modify jibot/config/seasons/testing/stems.yml to point to a different nick and channel to avoid stepping on the other jibots.
+
+Had to manually create a log file in the jibot directory before rake would work.
+
+@Macintosh:jibot myhomedir$ mkdir log@
+@Macintosh:jibot myhomedir$ rake db:migrate@
+(in /Users/myhomedir/src/jibot)
+rake aborted!
+Usage: DB=[Database config name] rake db:migrate
+/Users/myhomedir/src/jibot/rakefile:82
+(See full trace by running task with --trace)
+@Macintosh:jibot myhomedir$ script/server@
+Loading Autumn 3.0 (7-4-08)
+Freenode (Stem): Connecting to chat.freenode.net:6667...
+
 h2. Hacking JIBOT
 
 You should peruse README.autumn first, to get a feel for how it's structured. 
