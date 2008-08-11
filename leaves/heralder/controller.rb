@@ -129,6 +129,13 @@ class Controller < Autumn::Leaf
   end
   
   def to_sentence(defs)
+    # If there are a small number of defs, then join with "and", otherwise with "&"
+    if defs.length < 5
+      join_string = " and "
+    else
+      join_string = " & "
+    end
+    
     defs.collect {|r| r.def }.join(join_string)
   end
 end
