@@ -1,7 +1,7 @@
 --- 
 Freenode: 
   server: chat.freenode.net
-  nick: jibot2
+  nick: jibot
   leaves: 
   - Karma
   - Administrator
@@ -11,18 +11,18 @@ Freenode:
   channels:
     - "#joiito"
     - "#jibot"
-    - "#freeculture"
-    - "#technorati"
+  #  - "#freeculture"
+  #  - "#technorati"
     - "#jeanniecool"
     - "#suwcharman"
-    - "#icann"
-    - "#microformats"
-    - "#webkit"
-    - "#barcamp"
-    - "#aoir_general"
-    - "#shdh"
-    - "#jhuacm"
-    - "#openid"
+  #  - "#icann"
+   # - "#microformats"
+   # - "#webkit"
+   # - "#barcamp"
+   # - "#aoir_general"
+   # - "#shdh"
+   # - "#jhuacm"
+   # - "#openid"
   # bots:
   #   - jibot
   #   - jibot2
