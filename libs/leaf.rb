@@ -149,7 +149,7 @@ module Autumn
   
   class Leaf
     # Default for the +command_prefix+ init option.
-    DEFAULT_COMMAND_PREFIX = '!'
+    DEFAULT_COMMAND_PREFIX = '?'
     @@view_alias = Hash.new { |h,k| k }
     
     # The LogFacade instance for this leaf.
