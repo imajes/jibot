@@ -41,7 +41,7 @@ class Controller < Autumn::Leaf
     
     if h.nil? 
       Herald.new(:nick => nick.downcase, :setting => 1)
-      return "#{nick}: I don't know your settings, but I'll now herald you. Say !herald again to switch off."
+      return "#{nick}: I don't know your settings, but I'll now herald you. Say #{DEFAULT_COMMAND_PREFIX}herald again to switch off."
     end
     
     if h.setting == 0
@@ -76,6 +76,8 @@ class Controller < Autumn::Leaf
   end
   
   # Aliases
+  alias_command :herald, :heraldme
+  
   alias_command :def, :learn
   alias_command :def, :whois
   alias_command :def, :whatis
