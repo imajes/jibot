@@ -87,6 +87,8 @@ class Controller < Autumn::Leaf
     nick = str[0].strip!
     to_forget = str[2, str.length].join(" ")
     
+    return "You need to use ?forgetme to do that" if to_forget.nil? || to_forget.empty?
+    
     ## not checking for return values here, which is probably quite silly
     # now checking for exceptions
     begin
