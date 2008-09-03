@@ -117,7 +117,7 @@ class Controller < Autumn::Leaf
   end
   
   def define(user)
-    unless user.nil?
+    unless user.nil? || user.downcase.strip == "jibot"
       [to_sentence(Definition.all(:nick => user.downcase.strip, :order => [:pkey.asc])), user]
     end
   end
