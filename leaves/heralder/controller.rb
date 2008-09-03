@@ -84,7 +84,7 @@ class Controller < Autumn::Leaf
   
   def forget_command(stem, sender, reply_to, msg)
     str = msg.split
-    nick = str[0]
+    nick = str[0].strip!
     to_forget = str[2, str.length].join(" ")
     
     ## not checking for return values here, which is probably quite silly
@@ -102,23 +102,23 @@ class Controller < Autumn::Leaf
   # TODO: Fix "destroy *with* validations bug..."
   def forgetme_command(stem, sender, reply_to, msg)
     #apparently .destroy here fails
-    Definition.all(:nick => sender[:nick]).destroy!
+    Definition.all(:nick => sender[:nick].strip).destroy!
     
-    var :nick => sender[:nick]
+    var :nick => sender[:nick].strip!
   end
   
   private
   
   def should_herald(nick)
     unless nick.nil?
-      h = Herald.first(:nick => nick.downcase)
+      h = Herald.first(:nick => nick.downcase.strip)
       return true if h.nil? || h.setting == 1
     end
   end
   
   def define(user)
     unless user.nil?
-      [to_sentence(Definition.all(:nick => user.downcase, :order => [:pkey.asc])), user]
+      [to_sentence(Definition.all(:nick => user.downcase.strip, :order => [:pkey.asc])), user]
     end
   end
   
@@ -132,7 +132,7 @@ class Controller < Autumn::Leaf
       msgs = to_learn.split(" & ")
       
       # TODO: Validate uniqueness within the scope of the username
-      msgs.each { |to_learn|  Definition.new(:nick => nick.downcase, :def => to_learn).save }
+      msgs.each { |to_learn|  Definition.new(:nick => nick.downcase.strip, :def => to_learn).save }
     end
     
     return define(nick)
