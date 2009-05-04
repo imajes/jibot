@@ -11,7 +11,7 @@ Freenode:
   channels:
     - "#joiito"
     - "#jibot"
-  #  - "#freeculture"
+    - "#freeculture"
   #  - "#technorati"
     - "#jeanniecool"
     - "#suwcharman"
@@ -22,7 +22,7 @@ Freenode:
    # - "#barcamp"
    # - "#aoir_general"
    # - "#shdh"
-   # - "#jhuacm"
+    - "#jhuacm"
    # - "#openid"
   # bots:
   #   - jibot

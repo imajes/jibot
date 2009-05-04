@@ -84,7 +84,7 @@ class Controller < Autumn::Leaf
   
   def forget_command(stem, sender, reply_to, msg)
     str = msg.split
-    nick = str[0].strip!
+    nick = str.first.strip
     to_forget = str[2, str.length].join(" ")
     
     return "You need to use ?forgetme to do that" if to_forget.nil? || to_forget.empty?
@@ -103,10 +103,12 @@ class Controller < Autumn::Leaf
   
   # TODO: Fix "destroy *with* validations bug..."
   def forgetme_command(stem, sender, reply_to, msg)
-    #apparently .destroy here fails
-    Definition.all(:nick => sender[:nick].strip).destroy!
-    
-    var :nick => sender[:nick].strip!
+
+    # iterate all defs and destroy    
+    Definition.all(:nick => sender[:nick].strip).each do |d|
+      d.destroy
+    end
+    var :nick => sender[:nick].strip
   end
   
   private
