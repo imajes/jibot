@@ -120,21 +120,22 @@ class Controller < Autumn::Leaf
   
   def define(user)
     unless user.nil? || user.downcase.strip == "jibot"
-      [to_sentence(Definition.all(:nick => user.downcase.strip, :order => [:pkey.asc])), user]
+      [to_sentence(Definition.all(:nick => user.downcase.strip, :order => [:pkey.asc])), user.strip]
     end
   end
   
   def define_or_set(msg)
     msg = msg.split(" ")
     
-    nick = msg[0]
+    nick = msg[0].strip!
+    
     if msg[1] == "is"
       to_learn = msg[2, msg.length].join(" ")
       
       msgs = to_learn.split(" & ")
       
       # TODO: Validate uniqueness within the scope of the username
-      msgs.each { |to_learn|  Definition.new(:nick => nick.downcase.strip, :def => to_learn).save }
+      msgs.each { |to_learn|  Definition.new(:nick => nick.downcase.strip, :def => to_learn).save}
     end
     
     return define(nick)
