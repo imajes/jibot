@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd /home/jibot/jibot
+exec setuidgid jibot sh -c 'autumn start 2>&1'
