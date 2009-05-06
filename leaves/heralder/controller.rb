@@ -62,7 +62,7 @@ class Controller < Autumn::Leaf
       ## there's no message - just the command
       render "braindump" && return
     end
-
+    
     if (msg.split(" ").length > 1)
       herald, user = define_or_set(msg)
     else
@@ -129,7 +129,7 @@ class Controller < Autumn::Leaf
   def define_or_set(msg)
     msg = msg.split(" ")
     
-    nick = msg[0].strip!
+    nick = msg.first.strip
     
     if msg[1] == "is"
       to_learn = msg[2, msg.length].join(" ")
@@ -137,7 +137,9 @@ class Controller < Autumn::Leaf
       msgs = to_learn.split(" & ")
       
       # TODO: Validate uniqueness within the scope of the username
-      msgs.each { |to_learn|  Definition.new(:nick => nick.downcase.strip, :def => to_learn).save}
+      msgs.each { |to_learn|
+        Definition.new(:nick => nick.downcase.strip, :def => to_learn).save
+      }
     end
     
     return define(nick)
