@@ -104,8 +104,8 @@ class Controller < Autumn::Leaf
   # TODO: Fix "destroy *with* validations bug..."
   def forgetme_command(stem, sender, reply_to, msg)
 
-    # iterate all defs and destroy    
-    Definition.all(:nick => sender[:nick].strip).each do |d|
+    # iterate all defs and destroy
+    Definition.all(:nick => sender[:nick].strip.downcase).each do |d|
       d.destroy
     end
     var :nick => sender[:nick].strip
