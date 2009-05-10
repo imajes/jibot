@@ -1,4 +1,6 @@
-<% if var(:score).to_i > 10 %>
+<% if var(:score).nil? %>
+  <%= var(:item) %> is new here. Doesn't have any karma yet- why not start it off?
+<% elsif var(:score).to_i > 10 %>
   Hey, <%= var(:item) %> is doing pretty good with a karma of <%= var(:score) %> - bet you wish you were them :)
 <% elsif var(:score).to_i > 0 %>
   Not bad, not bad, <%= var(:item) %> is just getting started. Got a karma of <%= var(:score) %>
