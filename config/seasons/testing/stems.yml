@@ -1,7 +1,7 @@
 --- 
 Freenode: 
   server: chat.freenode.net
-  nick: jibot2
+  nick: jibot-testing
   leaves: 
   - Karma
   - Administrator
@@ -21,14 +21,3 @@ Freenode:
   #   - workbench
   #   - surly
   #   - chomp
-GimpNet:
-  server: irc.neitzert.com
-  nick: jibot
-  leaves: 
-  - Karma
-  - Administrator
-  - Heralder
-  - Insulter
-  rejoin: true
-  channels:
-    - "#dnalounge"

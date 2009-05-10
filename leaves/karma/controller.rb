@@ -1,14 +1,22 @@
-# Controller for the Karma leaf.
+gem 'dm-ar-finders' #, '=0.9.2'
+require 'dm-ar-finders'
+
+begin
+  gem 'chronic'
+  require 'chronic'
+rescue Gem::LoadError
+  # Install the "chronic" gem for more robust date parsing
+end
 
 class Controller < Autumn::Leaf
 
-   def irc_privmsg_event(stem, sender, arguments)
-     #puts "the event is #{arguments[:channel]} <#{sender[:nick]}> #{arguments[:message]}"
-
-     message = arguments[:message]
-     nick = sender[:nick]
-     
-   end
+   # def irc_privmsg_event(stem, sender, arguments)
+   #   #puts "the event is #{arguments[:channel]} <#{sender[:nick]}> #{arguments[:message]}"
+   # 
+   #   message = arguments[:message]
+   #   nick = sender[:nick]
+   #   
+   # end
 
   
   # Typing "!about" displays some basic information about this leaf.
@@ -18,6 +26,7 @@ class Controller < Autumn::Leaf
   end
   
   def karma_command(stem, sender, reply_to, msg)
-    score = Karma.find(:item => msg)
+    var :item => msg
+    var :score => Karma.first(:key => msg).value
   end
 end

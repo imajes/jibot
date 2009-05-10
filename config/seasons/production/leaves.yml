@@ -9,9 +9,13 @@ Administrator:
        - kevinmarks
        - joiito
   class: Administrator
+  command_prefix: %
 Insulter: 
   class: Insulter
+  command_prefix: "?"
 Heralder:
   class: Heralder
+  command_prefix: "?"
 Karma:
   class: Karma
+  command_prefix: "?" 
