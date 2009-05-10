@@ -2,5 +2,5 @@
 default: 
   adapter: sqlite3
   timeout: 5000
-  database: leaves/heralder/data/jibot.sqlite
+  database: data/production/jibot.sqlite
 
