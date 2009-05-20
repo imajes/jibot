@@ -19,7 +19,9 @@
 # --vcs, -c:: Add any created files or directories to the project's version
 #             control system. (Autodetects CVS and Subversion.)
 
-require 'libs/script'
+require 'rubygems'
+require 'autumn'
+require 'autumn/script'
 
 opts = GetoptLong.new(
   [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
