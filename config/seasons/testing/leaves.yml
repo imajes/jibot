@@ -19,6 +19,6 @@ Heralder:
 Karma:
   class: Karma
   command_prefix: "?"
-NyTimes:
-  class: NyTimes
+Nyt:
+  class: Nyt
   command_prefix: "?"

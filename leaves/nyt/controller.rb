@@ -1,3 +1,14 @@
+gem 'dm-ar-finders' #, '=0.9.2'
+require 'dm-ar-finders'
+
+
+begin
+  gem 'chronic'
+  require 'chronic'
+rescue Gem::LoadError
+  # Install the "chronic" gem for more robust date parsing
+end
+
 class Controller < Autumn::Leaf 
    
    gem 'harrisj-nytimes-articles'
