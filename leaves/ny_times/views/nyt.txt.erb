@@ -1,4 +1,4 @@
-<% if var(:results).nil? %>
+<% if var(:results).length == 0 %>
   <%= var(:item) %> returns no results from the New York Times.
 <% else %>
   <% var(:results).each_with_index do |res, i| %>
