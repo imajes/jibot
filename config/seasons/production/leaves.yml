@@ -19,3 +19,6 @@ Heralder:
 Karma:
   class: Karma
   command_prefix: "?" 
+NYTimes:
+  class: NYTimes
+  command_prefix: "?"
