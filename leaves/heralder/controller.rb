@@ -24,7 +24,7 @@ class Controller < Autumn::Leaf
     else
       str = "#{nick} is #{herald}"
     end
-    stem.message(str, channel) if str.present?
+    stem.message(str, channel) unless str.nil?
   end
   
   # Typing "!about" displays some basic information about this leaf. (and any others who define this too)
