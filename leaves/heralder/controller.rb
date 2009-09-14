@@ -15,7 +15,7 @@ class Controller < Autumn::Leaf
   
   # herald people as they join
   def someone_did_join_channel(stem, person, channel)
-    nick = person[:nick] if person.present?
+    nick = person[:nick] unless person.nil?
     
     herald, nick = define(nick) if should_herald?(nick)
     
