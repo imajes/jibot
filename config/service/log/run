@@ -1,2 +1,2 @@
 #!/bin/bash
-exec setuidgid jibot sh -c 'exec -a multilog-jibot /usr/local/bin/multilog t ./main'
+exec setuidgid jibot sh -c 'exec -a multilog-jibot /usr/local/bin/multilog t ~jibot/jibot/config/service/log/main'
