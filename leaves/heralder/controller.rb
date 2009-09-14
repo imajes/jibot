@@ -15,18 +15,16 @@ class Controller < Autumn::Leaf
   
   # herald people as they join
   def someone_did_join_channel(stem, person, channel)
-    nick = person[:nick]
+    nick = person[:nick] if person.present?
     
-    herald, nick = define(nick) if should_herald(nick)
+    herald, nick = define(nick) if should_herald?(nick)
     
     if herald.nil? || herald.empty?
-      str = ""
       #str = "Hey #{nick}!. Everyone, meet #{nick}. They're new about these parts."
     else
       str = "#{nick} is #{herald}"
     end
-    
-    stem.message(str, channel)
+    stem.message(str, channel) if str.present?
   end
   
   # Typing "!about" displays some basic information about this leaf. (and any others who define this too)
@@ -113,7 +111,7 @@ class Controller < Autumn::Leaf
   
   private
   
-  def should_herald(nick)
+  def should_herald?(nick)
     unless nick.nil?
       h = Herald.first(:nick => nick.downcase.strip)
       return true if h.nil? || h.setting == 1
