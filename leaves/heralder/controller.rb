@@ -137,7 +137,8 @@ class Controller < Autumn::Leaf
   
   def define_and_inspect(user)
     unless user.nil?
-      [Definition.all(:nick => user.downcase.strip, :order => [:pkey.asc]).inspect, user.strip]
+      defs = Definition.all(:nick => user.downcase.strip, :order => [:pkey.asc]).collect { |a| a.def }
+      [defs.inspect, user.strip]
     end
   end
   
