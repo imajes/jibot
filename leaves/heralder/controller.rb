@@ -55,7 +55,6 @@ class Controller < Autumn::Leaf
   end
   
   def def_command(stem, sender, reply_to, msg)
-
     if msg.nil?
       ## there's no message - just the command
       render "braindump" && return
@@ -70,7 +69,6 @@ class Controller < Autumn::Leaf
     
     var :herald => herald
     var :person => user
-    
   end
   
   # Aliases
@@ -109,6 +107,19 @@ class Controller < Autumn::Leaf
     var :nick => sender[:nick].strip
   end
   
+  def inspect_command(stem, sender, reply_to, msg)
+    if msg.nil?
+      ## there's no message - just the command
+      render "braindump" && return
+    end
+    
+    herald, user = define(msg, true)
+    herald = "not defined yet..." if (herald.nil? || herald.empty?)
+    
+    var :herald => herald
+    var :person => user
+  end
+  
   private
   
   def should_herald?(nick)
@@ -118,8 +129,8 @@ class Controller < Autumn::Leaf
     end
   end
   
-  def define(user)
-    unless user.nil? || user.downcase.strip == "jibot"
+  def define(user, skip=false)
+    unless user.nil? || (user.downcase.strip == "jibot" && skip != true)
       [to_sentence(Definition.all(:nick => user.downcase.strip, :order => [:pkey.asc])), user.strip]
     end
   end
