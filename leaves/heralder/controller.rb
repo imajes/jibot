@@ -113,10 +113,10 @@ class Controller < Autumn::Leaf
       render "braindump" && return
     end
     
-    herald, user = define(msg, true)
+    herald, user = define_and_inspect(msg)
     herald = "not defined yet..." if (herald.nil? || herald.empty?)
     
-    var :herald => herald
+    var :herald => herald.inspect
     var :person => user
   end
   
@@ -129,9 +129,15 @@ class Controller < Autumn::Leaf
     end
   end
   
-  def define(user, skip=false)
-    unless user.nil? || (user.downcase.strip == "jibot" && skip != true)
+  def define(user)
+    unless user.nil? || user.downcase.strip == "jibot"
       [to_sentence(Definition.all(:nick => user.downcase.strip, :order => [:pkey.asc])), user.strip]
+    end
+  end
+  
+  def define_and_inspect(user)
+    unless user.nil?
+      [Definition.all(:nick => user.downcase.strip, :order => [:pkey.asc]).inspect, user.strip]
     end
   end
   
